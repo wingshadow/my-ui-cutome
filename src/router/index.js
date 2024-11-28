@@ -175,26 +175,6 @@ export const dynamicRoutes = [
       }
     ]
   },
-  {
-    path: '/workflow/process',
-    component: Layout,
-    hidden: true,
-    permissions: ['workflow:process:query'],
-    children: [
-      {
-        path: 'start/:deployId([\\w|\\-]+)',
-        component: () => import('@/views/workflow/work/start'),
-        name: 'WorkStart',
-        meta: { title: '发起流程', icon: '' }
-      },
-      {
-        path: 'detail/:procInsId([\\w|\\-]+)',
-        component: () => import('@/views/workflow/work/detail'),
-        name: 'WorkDetail',
-        meta: { title: '流程详情', activeMenu: '/work/own' }
-      }
-    ]
-  },
 ]
 
 // 防止连续点击多次路由报错
