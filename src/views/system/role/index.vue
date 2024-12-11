@@ -107,7 +107,8 @@
       <el-table-column label="角色序号" type="index" width="120" align="center"/>
       <el-table-column label="角色名称" prop="roleName" :show-overflow-tooltip="true" width="150"/>
       <el-table-column label="权限字符" prop="roleKey" :show-overflow-tooltip="true" width="150"/>
-      <el-table-column label="显示顺序" prop="roleSort" width="100"/>
+      <el-table-column label="数据权限" prop="dataScope" width="150" :formatter="formatterDeptScope"/>
+      <el-table-column label="显示顺序" prop="sort" width="100"/>
       <el-table-column label="状态" align="center" width="100">
         <template slot-scope="scope">
           <el-switch
@@ -121,6 +122,11 @@
       <el-table-column label="创建时间" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="更新时间" align="center" prop="createTime" width="180">
+        <template slot-scope="scope">
+          <span>{{ parseTime(scope.row.updateTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -422,14 +428,30 @@ export default {
     },
     // 角色状态修改
     handleStatusChange(row) {
-      let text = row.status === "0" ? '启用' : '停用'
+      let text = row.status === '0' ? '启用' : '停用'
       this.$modal.confirm('确认要"' + text + '""' + row.roleName + '"角色吗？').then(function() {
         return changeRoleStatus(row.roleId, row.status)
       }).then(() => {
         this.$modal.msgSuccess(text + '成功')
       }).catch(function() {
-        row.status = row.status === "0" ? "0" : "1"
+        row.status = row.status === '0' ? '0' : '1'
       })
+    },
+    formatterDeptScope(row) {
+      let name = ''
+      let value = row.dataScope
+      if (value == 1) {
+        name = '全部部门'
+      } else if (value == 2) {
+        name = '自定义'
+      } else if (value == 3) {
+        name = '本部门'
+      } else if (value == 4) {
+        name = '本部门及下属部门'
+      } else if (value == 5) {
+        name = '无'
+      }
+      return name
     },
     // 取消按钮
     cancel() {
