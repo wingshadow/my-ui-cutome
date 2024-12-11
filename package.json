@@ -1,7 +1,7 @@
 {
-  "name": "ruoyi-flowable-plus",
+  "name": "ruoyi-plus",
   "version": "0.8.3",
-  "description": "RuoYi-Flowable-Plus后台管理系统",
+  "description": "RuoYi-Plus后台管理系统",
   "author": "KonBAI",
   "license": "MIT",
   "scripts": {
