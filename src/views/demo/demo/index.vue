@@ -317,7 +317,7 @@ export default {
         createBy: undefined,
         updateTime: undefined,
         updateBy: undefined,
-        delFlag: undefined
+        isDeleted: undefined
       };
       this.resetForm("form");
     },

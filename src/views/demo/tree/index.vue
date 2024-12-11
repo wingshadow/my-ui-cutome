@@ -222,7 +222,7 @@ export default {
         createBy: null,
         updateTime: null,
         updateBy: null,
-        delFlag: null
+        isDeleted: null
       };
       this.resetForm("form");
     },

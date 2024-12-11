@@ -375,7 +375,7 @@ export default {
         isFrame: "1",
         isCache: "0",
         visible: "1",
-        status: "1"
+        status: "0"
       };
       this.resetForm("form");
     },

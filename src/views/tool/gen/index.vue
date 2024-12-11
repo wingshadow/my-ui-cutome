@@ -254,8 +254,8 @@ export default {
     getList() {
       this.loading = true;
       listTable(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
-          this.tableList = response.rows;
-          this.total = response.total;
+          this.tableList = response.data.list;
+          this.total = response.data.total;
           this.loading = false;
         }
       );
@@ -278,7 +278,7 @@ export default {
           this.$modal.msgSuccess("成功生成到自定义路径：" + row.genPath);
         });
       } else {
-        this.$download.zip("/tool/gen/batchGenCode?tables=" + tableNames, "ruoyi.zip");
+        this.$download.zip("/tool/gen/batchGenCode?tables=" + tableNames, "source.zip");
       }
     },
     /** 同步数据库操作 */

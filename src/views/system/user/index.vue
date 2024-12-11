@@ -34,7 +34,7 @@
         >
           <el-form-item label="用户名称" prop="userName">
             <el-input
-              v-model="queryParams.userAccount"
+              v-model="queryParams.userName"
               placeholder="请输入账户名称"
               clearable
               style="width: 240px"
@@ -153,16 +153,13 @@
           <el-table-column label="用户姓名" align="center" key="userName" prop="userName" v-if="columns[2].visible"
                            :show-overflow-tooltip="true"
           />
-          <el-table-column label="用户昵称" align="center" key="nickName" prop="nickName" v-if="columns[3].visible"
+          <el-table-column label="组织部门" align="center" key="deptName" prop="dept.deptName" v-if="columns[3].visible"
                            :show-overflow-tooltip="true"
           />
-          <el-table-column label="组织部门" align="center" key="deptName" prop="dept.deptName" v-if="columns[4].visible"
-                           :show-overflow-tooltip="true"
-          />
-          <el-table-column label="手机号码" align="center" key="mobile" prop="mobile" v-if="columns[5].visible"
+          <el-table-column label="手机号码" align="center" key="mobile" prop="mobile" v-if="columns[4].visible"
                            width="120"
           />
-          <el-table-column label="状态" align="center" key="status" v-if="columns[6].visible">
+          <el-table-column label="状态" align="center" key="status" v-if="columns[5].visible">
             <template slot-scope="scope">
               <el-switch
                 v-model="scope.row.status"
@@ -172,7 +169,7 @@
               ></el-switch>
             </template>
           </el-table-column>
-          <el-table-column label="创建时间" align="center" prop="createTime" v-if="columns[7].visible" width="160">
+          <el-table-column label="创建时间" align="center" prop="createTime" v-if="columns[6].visible" width="160">
             <template slot-scope="scope">
               <span>{{ parseTime(scope.row.createTime) }}</span>
             </template>
@@ -234,7 +231,7 @@
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="用户昵称" prop="nickName">
+            <el-form-item label="用户姓名" prop="userName">
               <el-input v-model="form.userName" placeholder="请输入用户名称" maxlength="30"/>
             </el-form-item>
           </el-col>
@@ -460,7 +457,6 @@ export default {
         { key: 0, label: `用户编号`, visible: true },
         { key: 1, label: `账户名称`, visible: true },
         { key: 2, label: `用户名称`, visible: true },
-        { key: 3, label: `用户昵称`, visible: true },
         { key: 4, label: `部门`, visible: true },
         { key: 5, label: `手机号码`, visible: true },
         { key: 6, label: `状态`, visible: true },
@@ -469,11 +465,11 @@ export default {
       // 表单校验
       rules: {
         userAccount: [
-          { required: true, message: '用户名称不能为空', trigger: 'blur' },
-          { min: 2, max: 20, message: '用户名称长度必须介于 2 和 20 之间', trigger: 'blur' }
+          { required: true, message: '账户不能为空', trigger: 'blur' },
+          { min: 2, max: 20, message: '账户长度必须介于 2 和 20 之间', trigger: 'blur' }
         ],
-        nickName: [
-          { required: true, message: '用户昵称不能为空', trigger: 'blur' }
+        userName: [
+          { required: true, message: '用户姓名不能为空', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '用户密码不能为空', trigger: 'blur' },
@@ -559,7 +555,6 @@ export default {
         deptId: undefined,
         userAccount: undefined,
         userName: undefined,
-        nickName: undefined,
         password: undefined,
         mobile: undefined,
         email: undefined,

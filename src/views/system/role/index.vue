@@ -112,8 +112,8 @@
         <template slot-scope="scope">
           <el-switch
             v-model="scope.row.status"
-            active-value="1"
-            inactive-value="0"
+            active-value="0"
+            inactive-value="1"
             @change="handleStatusChange(scope.row)"
           ></el-switch>
         </template>
@@ -422,13 +422,13 @@ export default {
     },
     // 角色状态修改
     handleStatusChange(row) {
-      let text = row.status === "1" ? '启用' : '停用'
+      let text = row.status === "0" ? '启用' : '停用'
       this.$modal.confirm('确认要"' + text + '""' + row.roleName + '"角色吗？').then(function() {
         return changeRoleStatus(row.roleId, row.status)
       }).then(() => {
         this.$modal.msgSuccess(text + '成功')
       }).catch(function() {
-        row.status = row.status === "0" ? "1" : "0"
+        row.status = row.status === "0" ? "0" : "1"
       })
     },
     // 取消按钮
@@ -455,7 +455,7 @@ export default {
           roleName: undefined,
           roleKey: undefined,
           roleSort: 0,
-          status: 1,
+          status: '0',
           menuIds: [],
           deptIds: [],
           menuCheckStrictly: true,
