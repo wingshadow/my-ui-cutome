@@ -85,8 +85,8 @@ export default {
     getList() {
       listDbTable(this.queryParams).then(res => {
         if (res.code === 200) {
-          this.dbTableList = res.data.list;
-          this.total = res.data.total;
+          this.dbTableList = res.list;
+          this.total = res.total;
         }
       });
     },
